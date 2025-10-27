@@ -1,68 +1,56 @@
-class Animal:
-    def __init__(self, nome, especie, idade, peso):
+class Pet:
+    def __init__(self, nome, especie, idade, status):
         self.nome = nome
         self.especie = especie
         self.idade = idade
-        self.peso = peso
+        self.status = status
     
     def info(self):
-        return f"Nome: {self.nome} | Espécie: {self.especie} | Idade: {self.idade} anos | Peso: {self.peso} kg"
+        return f"Nome: {self.nome} | Espécie: {self.especie} | Idade: {self.idade} anos | Status: {self.status}"
 
 
-class PetShop:
+class SistemaPet:
     def __init__(self):
-        self.animais = []
+        self.pets = []
     
-    def adicionar_animal(self, animal):
-        self.animais.append(animal)
-        print(f"✅ {animal.nome} cadastrado com sucesso!")
+    def adicionar_pet(self, pet):
+        self.pets.append(pet)
+        print(f"✅ {pet.nome} cadastrado com sucesso!")
     
-    def listar_animais(self):
-        if not self.animais:
-            print("Nenhum animal cadastrado ainda.")
+    def listar_pets(self):
+        if not self.pets:
+            print("Nenhum PET cadastrado ainda.")
         else:
-            print("\n🐾 Lista de Animais Cadastrados:")
-            for i, animal in enumerate(self.animais, start=1):
-                print(f"{i}. {animal.info()}")
-    
-    def remover_animal(self, nome):
-        for animal in self.animais:
-            if animal.nome.lower() == nome.lower():
-                self.animais.remove(animal)
-                print(f"❌ {nome} removido com sucesso!")
-                return
-        print("Animal não encontrado.")
+            print("\n🐾 Lista de PETs:")
+            for i, pet in enumerate(self.pets, start=1):
+                print(f"{i}. {pet.info()}")
 
 
-# Menu do Sistema
-petshop = PetShop()
+# Menu
+sistema = SistemaPet()
 
 while True:
-    print("\n===== PETSHOP SYSTEM =====")
-    print("1 - Cadastrar Animal")
-    print("2 - Listar Animais")
-    print("3 - Remover Animal")
-    print("4 - Sair")
+    print("\n===== SISTEMA DE CONTROLE DE PETS =====")
+    print("1 - Cadastrar PET")
+    print("2 - Listar PETs")
+    print("3 - Sair")
     opcao = input("Escolha uma opção: ")
 
     if opcao == "1":
-        nome = input("Nome do animal: ")
+        nome = input("Nome do PET: ")
         especie = input("Espécie: ")
-        idade = int(input("Idade (anos): "))
-        peso = float(input("Peso (kg): "))
-        novo_animal = Animal(nome, especie, idade, peso)
-        petshop.adicionar_animal(novo_animal)
+        idade = int(input("Idade: "))
+        status = input("Status do PET (Aguardando, Em consulta, Atendido): ")
+        novo_pet = Pet(nome, especie, idade, status)
+        sistema.adicionar_pet(novo_pet)
 
     elif opcao == "2":
-        petshop.listar_animais()
+        sistema.listar_pets()
 
     elif opcao == "3":
-        nome = input("Digite o nome do animal a remover: ")
-        petshop.remover_animal(nome)
-
-    elif opcao == "4":
-        print("Encerrando o sistema... Até logo! 🐕👋")
+        print("Saindo... 🐕👋")
         break
 
     else:
-        print("Opção inválida! Tente novamente.")
+        print("Opção inválida!")
+
