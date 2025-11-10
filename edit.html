@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Editar Cliente</title>
+    <style>
+        body { font-family: Arial; background: #f5f5f5; margin: 40px; }
+        form { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 400px; }
+        input { margin: 5px 0; padding: 8px; width: 100%; border-radius: 5px; border: 1px solid #ccc; }
+        button { background: #3498db; color: white; padding: 10px; border: none; border-radius: 6px; cursor: pointer; width: 100%; }
+        button:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <h2>Editar Cliente</h2>
+
+    <form method="POST">
+        <input type="text" name="novo_nome" value="{{ cliente.nome }}" required>
+        <input type="text" name="novo_tel" value="{{ cliente.telefone }}" required>
+        <button type="submit">Salvar Alterações</button>
+    </form>
+</body>
+</html>
