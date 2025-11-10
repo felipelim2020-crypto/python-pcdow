@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>PetShop</title>
+    <style>
+        body { font-family: Arial; background: #f5f5f5; margin: 40px; }
+        h1 { color: #444; }
+        form { background: white; padding: 20px; border-radius: 10px; margin-bottom: 40px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        input, select { margin: 5px 0; padding: 8px; width: 100%; border-radius: 5px; border: 1px solid #ccc; }
+        button { background: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; }
+        button:hover { background: #45a049; }
+        .cliente { background: white; margin-bottom: 20px; padding: 15px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .pet { margin-left: 20px; padding: 8px; background: #f0f0ff; border-radius: 6px; }
+        .botoes { margin-top: 10px; }
+        .excluir, .editar { background: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 5px; cursor: pointer; }
+        .editar { background: #3498db; margin-right: 8px; }
+        .excluir:hover { background: #c0392b; }
+        .editar:hover { background: #2980b9; }
+    </style>
+</head>
+<body>
+    <h1>Cadastro de Clientes e Pets 🐾</h1>
+
+    <form method="POST" action="/adicionar">
+        <h3>Adicionar Cliente e Pet</h3>
+        <input type="text" name="nome_cliente" placeholder="Nome do cliente" required>
+        <input type="text" name="telefone" placeholder="Telefone" required>
+        <input type="text" name="nome_pet" placeholder="Nome do pet" required>
+        <input type="text" name="especie" placeholder="Espécie" required>
+        <input type="number" name="idade" placeholder="Idade" required>
+        <select name="status">
+            <option value="Ativo">Em espera</option>
+            <option value="Inativo">Ja atentido</option>
+        </select>
+        <button type="submit">Salvar</button>
+    </form>
+
+    {% for cliente in clientes %}
+        <div class="cliente">
+            <h3>{{ cliente.nome }} ({{ cliente.telefone }})</h3>
+            <div class="botoes">
+                <a href="/editar/{{ cliente.nome }}"><button class="editar">Editar</button></a>
+                <a href="/excluir/{{ cliente.nome }}"><button class="excluir">Excluir</button></a>
+            </div>
+
+            {% for pet in cliente.pets %}
+                <div class="pet">
+                    <b>{{ pet.nome }}</b> — {{ pet.especie }} — {{ pet.idade }} anos — {{ pet.status }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+</body>
+</html>
